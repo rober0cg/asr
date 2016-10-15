@@ -1,6 +1,6 @@
-/target/
-/bin/
 /.settings/
+/bin/
+/target/
 .classpath
-/.sonar/
 /datos/
+/src/.sonar/
