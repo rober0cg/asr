@@ -3,4 +3,4 @@
 /target/
 .classpath
 /datos/
-/src/.sonar/
+/src/.sonar/.sonartmp/caches/
