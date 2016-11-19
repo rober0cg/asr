@@ -67,9 +67,7 @@ public class FactorExpresion implements FactorBase {
 
     @Override
     public String toText(){
-        String str="";
-        str = "(" + expr.toText() + ")" ;
-        return str;
+        return "(" + expr.toText() + ")";
     }
 
     @Override

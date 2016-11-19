@@ -70,9 +70,7 @@ public class FactorConstante implements FactorBase {
     
     @Override
     public String toText(){
-        String str="";
-        str = String.valueOf(cons);
-        return str;
+        return String.valueOf(cons);
     }
 
     @Override

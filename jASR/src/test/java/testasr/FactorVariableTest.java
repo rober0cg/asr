@@ -6,6 +6,7 @@ import org.apache.log4j.Logger;
 import org.junit.Test;
 
 import asr.FactorVariable;
+import asr.Variables;
 
 public class FactorVariableTest {
     private static final Logger LOG = Logger.getLogger(FactorVariableTest.class);
@@ -69,21 +70,21 @@ public class FactorVariableTest {
 
         str="x+13";
         FactorVariable x = new FactorVariable(str);
-        x.getVariable().set(123.0);
+        Variables.set("x", 123.0);
         varEvalua = x.evalua();
         LOG.trace("x.evalua()=="+varEvalua);
         assertEquals(str, varEvalua, 123.0, DELTA);
 
         str="xx2+33";
         FactorVariable xx2 = new FactorVariable(str);
-        xx2.getVariable().set(-0.00001);
+        Variables.set("xx2", -0.00001);
         varEvalua = xx2.evalua();
         LOG.trace("xx2.evalua()=="+varEvalua);
         assertEquals(str, varEvalua, -0.00001, DELTA);
 
         str="xxx3,xx2";
         FactorVariable xxx3 = new FactorVariable(str);
-        xxx3.getVariable().set(-12345678.00001);
+        Variables.set("xxx3",-12345678.00001);
         varEvalua = xxx3.evalua();
         LOG.trace("xxx3.evalua()=="+varEvalua);
         assertEquals(str, varEvalua, -12345678.00001, DELTA);

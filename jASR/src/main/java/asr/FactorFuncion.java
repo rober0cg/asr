@@ -19,7 +19,8 @@ public class FactorFuncion implements FactorBase {
 
     int leidos=0;  // longitud caracteres leídos
     Funcion func;
-    Expresion expr1, expr2; // para funciones con 0, 1 o 2 argumentos
+    Expresion expr1; // para funciones con 0, 1 o 2 argumentos
+    Expresion expr2;
     
     public FactorFuncion(String text) {
         LOG.trace("FactorFuncion= "+text);
@@ -96,7 +97,7 @@ public class FactorFuncion implements FactorBase {
     public double evalua() {
         double d;
         if ( func==null ) {
-            LOG.error("FactorFuncion.evalua("+func.toText()+") -> null ");
+            LOG.error("FactorFuncion.evalua() func is null");
             d=0.0;
         }
         else {

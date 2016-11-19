@@ -4,7 +4,9 @@ import java.util.Iterator;
 
 import org.apache.log4j.Logger;
 
-import asr.*;
+import asr.Expresion;
+import asr.Variables;
+import asr.Variables.Var;
 
 
 public class ASR {
@@ -34,50 +36,38 @@ public class ASR {
 
         expr.traza("expr e");
 
-        Iterator<Variable> iv ;
+        Iterator<Var> iv ;
         
-        iv = Variable.getVariables1();
+        iv = Variables.getVariables();
         while ( iv.hasNext()) {
-            LOG.info( "getVariables1 = " + iv.next().getName() );
+            LOG.info( "getVariables = " + iv.next().getName() );
         }
-        
-        iv = Variable.getVariables2();
-        while ( iv.hasNext()) {
-            LOG.info( "getVariables2 = " + iv.next().getName() );
-        }
-        
-        Variable x = new Variable(vx,1.55);
-        LOG.info("Variable x creada: " + x.toText() );
 
-        Variable y = new Variable(vy);
-        y.set(1.55);
-        LOG.info("Variable y creada: " + y.toText() );
+        Variables.set(vx, 1.55);
+        LOG.info("Variable x creada: " + Variables.toText(vx) );
+
+        Variables.set(vy, 1.55);
+        LOG.info("Variable y creada: " + Variables.toText(vy) );
       
-        Variable z = new Variable(vz);
-        z.set(-7.55);
-        LOG.info("Variable y creada: " + z.toText() );
+        Variables.set(vy, -7.55);
+        LOG.info("Variable y creada: " + Variables.toText(vz) );
 
         d = expr.evalua();
         LOG.info("main 1: " + expr.toText() + " = " + d );
 
-        x.set(0.71);
+        Variables.set(vx, 0.71);
         d = expr.evalua();
         LOG.info("main 2: " + text + " = " + d );
 
-        x.set(0);
+        Variables.set(vx, 0);
         d = expr.evalua();
         LOG.info("main 3: " + text + " = " + d );
 
-        iv = Variable.getVariables1();
+        iv = Variables.getVariables();
         while ( iv.hasNext()) {
-            LOG.info( "getVariables1 = " + iv.next().getName() );
+            LOG.info( "getVariables = " + iv.next().getName() );
         }
         
-        iv = Variable.getVariables2();
-        while ( iv.hasNext()) {
-            LOG.info( "getVariables2 = " + iv.next().getName() );
-        }
-
         return;
     }
 

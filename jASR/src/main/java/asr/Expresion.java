@@ -21,6 +21,8 @@ public class Expresion {
     Termino term;   // primer término
     Expresion next=null;  // seguido de otra expresión
 
+    static Variables vars ; // lista de variables
+
     public Expresion(String text) {
         LOG.trace("Expresion= "+text);
         // analizar si ya hemos llegado al final de la expresión ( ')' o null )

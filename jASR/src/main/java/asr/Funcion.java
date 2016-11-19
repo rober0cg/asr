@@ -25,25 +25,25 @@ public class Funcion {
     private static final Logger LOG = Logger.getLogger(Funcion.class);
 
     int idx; // indice en la lista de Fun's
-    static ArrayList<Fun> lst = new ArrayList<Fun>();
+    static ArrayList<Fun> listFuncs = new ArrayList<>();
    
     public Funcion( String text ) {
         LOG.trace("Funcion = "+text);
         Fun f = new Fun(text);
-        if ( lst.contains(f)) {
-            idx = lst.indexOf(f);
+        if ( listFuncs.contains(f)) {
+            idx = listFuncs.indexOf(f);
         }
         else {
-            lst.add(f);
-            idx = lst.size()-1;
+            listFuncs.add(f);
+            idx = listFuncs.size()-1;
         }
     }
 
     public double evalua ( Expresion expr1, Expresion expr2 ) {
         double d;
-        Method method = lst.get(idx).getMethod();
+        Method method = listFuncs.get(idx).getMethod();
         if ( method==null ) {
-            LOG.error("Funcion.evalua getMethod ("+lst.get(idx).getName()+") == null ");
+            LOG.error("Funcion.evalua getMethod ("+listFuncs.get(idx).getName()+") == null ");
             d = 0.0;
         }
         else {
@@ -63,7 +63,7 @@ public class Funcion {
                 }
             } catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
                 LOG.error(e);
-                LOG.error("Funcion " + lst.get(idx).getName() + " ERROR IllegalArgument");
+                LOG.error("Funcion " + listFuncs.get(idx).getName() + " ERROR IllegalArgument");
                 d = 0.0;
             }
         }
@@ -71,15 +71,15 @@ public class Funcion {
     }
 
     String getName() {
-        return lst.get(idx).getName();
+        return listFuncs.get(idx).getName();
     }
 
     public String toText() {
-        return lst.get(idx).getName() + "()" ;
+        return listFuncs.get(idx).getName() + "()" ;
     }
 
     void print(String pre){
-        LOG.trace(pre + lst.get(idx).getName()+"()");
+        LOG.trace(pre + listFuncs.get(idx).getName()+"()");
     }
 
 
@@ -119,13 +119,17 @@ public class Funcion {
 
         @Override
         public boolean equals ( Object o ) {
+            if ( o==null )
+                return false ;
+            if ( o.getClass() != this.getClass() )
+                return false ;
             Fun f = (Fun)o;
             return name.equals(f.name);
         }
         
         @Override
         public int hashCode ( ) {
-            return Objects.hash(lst.get(idx));
+            return Objects.hash(listFuncs.get(idx));
         }
     }
     

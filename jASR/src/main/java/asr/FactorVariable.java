@@ -18,27 +18,28 @@ public class FactorVariable implements FactorBase {
     private static final Logger LOG = Logger.getLogger(FactorVariable.class);
 
     int leidos=0;  // longitud caracteres leídos
-    Variable var;
-    
+    int idx; // indice en la lista de Var's
+    static Variables vars ; // lista de variables
+
     public FactorVariable(String text) {
         LOG.trace("FactorVariable= "+text);
         if ( text==null || text.length()==0 ){
             leidos=0;
-            var=null;
+            idx=-1;
         }
         else {
             char c=text.charAt(0);
             if ( Util.isFinExpr(c) ) { // si [),;] avanzamos el final de expresion
                 leidos=1; // avanzamos el final de expresion
-                var=null;
+                idx=-1;
             }
             else if ( Util.isOpTerm(c) ) { // si [+-] viene termino
                 leidos=0;
-                var=null;
+                idx=-1;
             }
             else if ( Util.isOpFact(c) ) { // si [*/] viene factor
                 leidos=0;
-                var=null;
+                idx=-1;
             }
             else { // localizamos nombre variable y la creamos
                 leidos = factVar(text);
@@ -47,7 +48,7 @@ public class FactorVariable implements FactorBase {
     }
     private int factVar (String text) {
         int n=Util.longNombreVarOrFunc(text);
-        var = new Variable(text.substring(0,n));
+        idx = Variables.addVar(text.substring(0,n));
         return n;
     }
     
@@ -58,30 +59,23 @@ public class FactorVariable implements FactorBase {
 
     @Override
     public double evalua() {
-        double d ;
-        if ( var==null ) {
-            LOG.error("FactorVariable.evalua null ("+var+")");
-            d=0.0;
+        double d=0.0 ;
+        if ( idx==-1 ) {
+            LOG.error("FactorVariable.evalua null ("+idx+")");
         }
         else {
-            d = var.evalua();
+            d = Variables.evalua(idx);
         }
         return d ;
     }
 
-    public Variable getVariable(){
-        return var;
-    }
-    
     @Override
     public String toText(){
-        String str="";
-        str = var.getName();
-        return str;
+        return Variables.getName(idx);
     }
 
     @Override
     public void print(String pre){
-        var.print(pre);
+        LOG.trace(pre + Variables.getName(idx));
     }
 }
