@@ -22,19 +22,19 @@ public class FactorVariableTest {
         FactorVariable x = new FactorVariable(str);
         varToString = x.toText();
         LOG.trace(varToString);
-        assertTrue(varToString, "x".equals(varToString));
+        assertTrue(str+" = "+varToString, "x".equals(varToString));
 
         str="xx2+3";
         FactorVariable xx2 = new FactorVariable(str);
         varToString = xx2.toText();
         LOG.trace(varToString);
-        assertTrue(varToString, "xx2".equals(varToString));
+        assertTrue(str+" = "+varToString, "xx2".equals(varToString));
 
         str="xxx3,xx2";
         FactorVariable xxx3 = new FactorVariable(str);
         varToString = xxx3.toText();
         LOG.trace(varToString);
-        assertTrue(varToString, "xxx3".equals(varToString));
+        assertTrue(str+" = "+varToString, "xxx3".equals(varToString));
 
     }
 
@@ -47,19 +47,19 @@ public class FactorVariableTest {
         FactorVariable x = new FactorVariable(str);
         varComido = x.comido();
         LOG.trace("x.comido()=="+varComido);
-        assertTrue(str, varComido==1);
+        assertTrue(str+" (comido1) = ", varComido==1);
 
         str="xx2*23";
         FactorVariable xx2 = new FactorVariable(str);
         varComido = xx2.comido();
         LOG.trace("xx2.comido()=="+varComido);
-        assertTrue(str, varComido==3);
+        assertTrue(str+" (comido2) = ", varComido==3);
 
         str="xxx3*(xx2)";
         FactorVariable xxx3 = new FactorVariable(str);
         varComido = xxx3.comido();
         LOG.trace("xxx3.comido()=="+varComido);
-        assertTrue(str, varComido==4);
+        assertTrue(str+" (comido3) = ", varComido==4);
 
     }
 
@@ -73,21 +73,21 @@ public class FactorVariableTest {
         Variables.set("x", 123.0);
         varEvalua = x.evalua();
         LOG.trace("x.evalua()=="+varEvalua);
-        assertEquals(str, varEvalua, 123.0, DELTA);
+        assertEquals(str+" (value1) = ", varEvalua, 123.0, DELTA);
 
         str="xx2+33";
         FactorVariable xx2 = new FactorVariable(str);
         Variables.set("xx2", -0.00001);
         varEvalua = xx2.evalua();
         LOG.trace("xx2.evalua()=="+varEvalua);
-        assertEquals(str, varEvalua, -0.00001, DELTA);
+        assertEquals(str+" (value2) = ", varEvalua, -0.00001, DELTA);
 
         str="xxx3,xx2";
         FactorVariable xxx3 = new FactorVariable(str);
         Variables.set("xxx3",-12345678.00001);
         varEvalua = xxx3.evalua();
         LOG.trace("xxx3.evalua()=="+varEvalua);
-        assertEquals(str, varEvalua, -12345678.00001, DELTA);
+        assertEquals(str+" (value3) = ", varEvalua, -12345678.00001, DELTA);
 
     }
 

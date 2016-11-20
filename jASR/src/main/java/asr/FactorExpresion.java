@@ -41,7 +41,7 @@ public class FactorExpresion implements FactorBase {
                 expr=null;
             }
             else {
-                expr = new Expresion(text.substring(leidos));
+                expr = new Expresion(text.substring(0)); // 0 -> desde la primera posición
                 leidos = expr.comido();
             }
         }

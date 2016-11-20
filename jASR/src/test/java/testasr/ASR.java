@@ -23,11 +23,11 @@ public class ASR {
         String text ;
         double d;
         
-//        "(3-2)-3+5*(2+2)-2" ; 
-//        "-cos(x+y)+1-sin(-2*x/2)" ; 
-//        "100+50*sin(x/100)" ;
-//      "100+50*hypot(x/100,y)" ;
-     // "100+50*hypot(x/100,y)+80*sin(z)" ;
+// ej1     (3-2)-3+5*(2+2)-2 
+// ej2     -cos(x+y)+1-sin(-2*x/2) 
+// ej3     100+50*sin(x/100)
+// ej4     100+50*hypot(x/100,y)
+// ej5     100+50*hypot(x/100,y)+80*sin(z)
 
         text = "(3-2)-3+5*(2+2)-2" ;
 
