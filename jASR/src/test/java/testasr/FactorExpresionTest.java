@@ -23,6 +23,18 @@ public class FactorExpresionTest {
         LOG.trace(str+" = "+exprToString);
         assertTrue(str+" = "+exprToString, "(8.0+2.0/4.0)".equals(exprToString));
 
+        str = null ;
+        FactorExpresion e2 = new FactorExpresion(str);
+        exprToString = e2.toText() ;
+        LOG.trace(str+" = "+exprToString);
+        assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
+
+        str = "" ;
+        FactorExpresion e3 = new FactorExpresion(str);
+        exprToString = e3.toText() ;
+        LOG.trace(str+" = "+exprToString);
+        assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
+
     }
 
     @Test

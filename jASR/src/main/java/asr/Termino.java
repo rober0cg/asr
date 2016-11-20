@@ -88,20 +88,30 @@ public class Termino {
     }
 
     public String toText(){
-        String str = "";
-        str += fact.toText();
-        if ( next!=null) {
-            str += next.fact.oper ;
-            str += next.toText();
+        String str ;
+        if ( fact==null ) {
+            str = "null" ;
+        }
+        else {
+            str = fact.toText();
+            if ( next!=null) {
+                str += Character.toString(next.fact.oper) ;
+                str += next.toText();
+            }
         }
         return str;
     }
 
     void print(String pre){
-        fact.print(pre + Util.SEP);
-        if ( next!=null) {
-            LOG.trace(pre + Util.SEP + next.fact.oper);
-            next.print(pre);
+        if ( fact==null ) {
+            LOG.trace(pre + "null");
+        }
+        else {
+            fact.print(pre + Util.SEP);
+            if ( next!=null) {
+                LOG.trace(pre + Util.SEP + next.fact.oper);
+                next.print(pre);
+            }
         }
     }
 }

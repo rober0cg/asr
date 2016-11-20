@@ -28,6 +28,31 @@ public class FactorConstanteTest {
         consToString = c2.toText();
         LOG.trace(consToString);
         assertTrue(consToString, "3.5".equals(consToString));
+
+        str = null ;
+        FactorConstante c3 = new FactorConstante(str);
+        consToString = c3.toText();
+        LOG.trace(consToString);
+        assertTrue(consToString, "1.0".equals(consToString));
+
+        str = "" ;
+        FactorConstante c4 = new FactorConstante(str);
+        consToString = c4.toText();
+        LOG.trace(consToString);
+        assertTrue(consToString, "1.0".equals(consToString));
+
+        str = "+2" ;
+        FactorConstante c5 = new FactorConstante(str);
+        consToString = c5.toText();
+        LOG.trace(consToString);
+        assertTrue(consToString, "1.0".equals(consToString));
+
+        str = "*3" ;
+        FactorConstante c6 = new FactorConstante(str);
+        consToString = c6.toText();
+        LOG.trace(consToString);
+        assertTrue(consToString, "1.0".equals(consToString));
+    
     }
 
     @Test
@@ -73,12 +98,14 @@ public class FactorConstanteTest {
         str = "3,5/cc" ;
         FactorConstante c1 = new FactorConstante(str);
         consToString = c1.toText();
+        c1.print("testToText");
         LOG.trace(consToString);
         assertTrue(consToString+" (text) ", "3.0".equals(consToString));
 
         str = "3.5/cc" ;
         FactorConstante c2 = new FactorConstante(str);
         consToString = c2.toText();
+        c2.print("testToText");
         LOG.trace(consToString);
         assertTrue(consToString+" (text) ", "3.5".equals(consToString));
     }

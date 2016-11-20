@@ -67,13 +67,25 @@ public class FactorExpresion implements FactorBase {
 
     @Override
     public String toText(){
-        return "(" + expr.toText() + ")";
+        String text ;
+        if ( expr==null ) {
+            text = "(null)";
+        }
+        else {
+            text = "(" + expr.toText() + ")";
+        }
+        return text;
     }
 
     @Override
     public void print(String pre){
         LOG.trace(pre + "(");
-        expr.print(pre, true);
+        if ( expr==null ) {
+            LOG.trace(pre + "(null)");
+        }
+        else {
+            expr.print(pre, true);
+        }
         LOG.trace(pre + ")" );
     }
 }

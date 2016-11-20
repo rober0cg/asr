@@ -23,8 +23,8 @@ public class FactorConstante implements FactorBase {
     public FactorConstante(String text) {
         LOG.trace("FactorConstante= "+text);
         if ( text==null || text.length()==0 ){
-            leidos=0;
             cons=1.0;
+            leidos=0;
         }
         else {
             char c=text.charAt(0);

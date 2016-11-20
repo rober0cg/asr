@@ -88,10 +88,10 @@ public class Expresion {
     public String toText(boolean isFirst){
         String str= "";
         if ( isFirst && term.oper=='-')
-            str += term.oper;
+            str += Character.toString(term.oper);
         str += term.toText();
         if ( next!=null) {
-            str += next.term.oper;
+            str += Character.toString(next.term.oper);
             str += next.toText(false);
         }
         return str;
