@@ -108,28 +108,39 @@ public class FactorFuncion implements FactorBase {
 
     @Override
     public String toText(){
-        String str = func.getName()+ "(";
-        if ( expr1!=null ) { // func(expr1...)
-            str += expr1.toText() ;
+        String str ;
+        if ( func==null ) {
+            str = "null()" ;
         }
-        if ( expr2!=null ) { // func(expr1,expr2)
-            str += "," + expr2.toText() ;
+        else {
+            str = func.getName()+ "(";
+            if ( expr1!=null ) { // func(expr1...)
+                str += expr1.toText() ;
+            }
+            if ( expr2!=null ) { // func(expr1,expr2)
+                str += "," + expr2.toText() ;
+            }
+            str += ")";
         }
-        str += ")";
         return str;
     }
 
     @Override
     public void print(String pre){
-        func.print(pre);
-        LOG.trace(pre + "(");
-        if ( expr1!=null ) {
-            expr1.print(pre, true);
+        if ( func==null ) {
+            LOG.trace(pre + "null()");            
         }
-        if ( expr2!=null ) {
-            LOG.trace(pre + ",");
-            expr2.print(pre, true);
+        else {
+            func.print(pre);
+            LOG.trace(pre + "(");
+            if ( expr1!=null ) {
+                expr1.print(pre, true);
+            }
+            if ( expr2!=null ) {
+                LOG.trace(pre + ",");
+                expr2.print(pre, true);
+            }
+            LOG.trace(pre + ")");
         }
-        LOG.trace(pre + ")");
     }
 }

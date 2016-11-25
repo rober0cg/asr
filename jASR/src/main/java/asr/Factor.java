@@ -86,7 +86,7 @@ public class Factor {
         }
     }
     
-    double evalua() {
+    public double evalua() {
         double d ;
         if (fact==null) {
             LOG.error("Factor.evalua null ("+fact+")");
@@ -98,17 +98,27 @@ public class Factor {
         return ( oper=='*' ) ? d : 1.0/d ;
     }
 
-    int comido() {
+    public int comido() {
         return leidos;
     }
 
     public String toText() {
         String str="";
-        str += fact.toText() ;
+        if ( fact==null ) {
+            str = "(null)" ;
+        }
+        else {
+            str += fact.toText() ;
+        }
         return str;
     }
 
     void print(String pre){
-        fact.print(pre + Util.SEP);
+        if ( fact==null ) {
+            LOG.trace(pre + "(null)");
+        }
+        else {
+            fact.print(pre + Util.SEP);
+        }
     }
 }

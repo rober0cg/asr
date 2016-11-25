@@ -71,11 +71,23 @@ public class FactorVariable implements FactorBase {
 
     @Override
     public String toText(){
-        return Variables.getName(idx);
+        String str ;
+        if ( idx==-1 ) {
+            str = "null" ;
+        }
+        else {
+            str = Variables.getName(idx);
+        }
+        return str ;
     }
 
     @Override
     public void print(String pre){
-        LOG.trace(pre + Variables.getName(idx));
+        if ( idx==-1 ){
+            LOG.trace(pre + "null");
+        }
+        else {
+            LOG.trace(pre + Variables.getName(idx));
+        }
     }
 }

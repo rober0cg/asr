@@ -20,9 +20,5 @@ Los clases implementadas:
   Factor-Funciion(Expresion)
   Factor-(Expresion)
 
-Pasado el código por sonar: 0% duada tecnica
-
-TODO
-funciones con varios argumentos
 
 

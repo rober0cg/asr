@@ -9,7 +9,8 @@ import org.junit.runners.Suite.SuiteClasses;
     FactorVariableTest.class,
     FactorConstanteTest.class,
     FactorExpresionTest.class,
-    FactorFuncionTest.class  
+    FactorFuncionTest.class,
+    FactorTest.class
 })
 public class AllTests {
 

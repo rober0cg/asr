@@ -16,22 +16,41 @@ public class FactorExpresionTest {
     public final void testFactorExpresion() {
         String str ;
         String exprToString ;
-
+        FactorExpresion e ;
+        
         str = "8+2/4" ;
-        FactorExpresion e1 = new FactorExpresion(str);
-        exprToString = e1.toText() ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
         LOG.trace(str+" = "+exprToString);
         assertTrue(str+" = "+exprToString, "(8.0+2.0/4.0)".equals(exprToString));
 
         str = null ;
-        FactorExpresion e2 = new FactorExpresion(str);
-        exprToString = e2.toText() ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
         LOG.trace(str+" = "+exprToString);
         assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
 
         str = "" ;
-        FactorExpresion e3 = new FactorExpresion(str);
-        exprToString = e3.toText() ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        LOG.trace(str+" = "+exprToString);
+        assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
+
+        str = "+32" ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        LOG.trace(str+" = "+exprToString);
+        assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
+
+        str = "*32" ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        LOG.trace(str+" = "+exprToString);
+        assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
+
+        str = ",32" ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
         LOG.trace(str+" = "+exprToString);
         assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
 
@@ -42,11 +61,12 @@ public class FactorExpresionTest {
         String str ;
         String exprToString ;
         int exprComido ;
-
+        FactorExpresion e ;
+        
         str = "6+2/4" ;
-        FactorExpresion e1 = new FactorExpresion(str);
-        exprComido = e1.comido() ;
-        exprToString = e1.toText() ;
+        e = new FactorExpresion(str);
+        exprComido = e.comido() ;
+        exprToString = e.toText() ;
         LOG.trace(str+" (comido) = "+exprComido);
         assertTrue(str+" = "+exprToString, 5 == exprComido);
 
@@ -57,18 +77,26 @@ public class FactorExpresionTest {
         String str ;
         String exprToString ;
         double exprValue ;
+        FactorExpresion e ;
+
+        str = null ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        exprValue = e.evalua() ;
+        LOG.trace(str+" (value) = "+exprValue);
+        assertEquals(str+" = "+exprToString, exprValue, 1.0, DELTA);
 
         str = "2+2/4" ;
-        FactorExpresion e1 = new FactorExpresion(str);
-        exprToString = e1.toText() ;
-        exprValue = e1.evalua() ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        exprValue = e.evalua() ;
         LOG.trace(str+" (value) = "+exprValue);
         assertEquals(str+" = "+exprToString, exprValue, 2.5, DELTA);
 
         str = "(2+2)/4" ;
-        FactorExpresion e2 = new FactorExpresion(str);
-        exprToString = e2.toText() ;
-        exprValue = e2.evalua() ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        exprValue = e.evalua() ;
         LOG.trace(str+" (value) = "+exprValue);
         assertEquals(str+" = "+exprToString, exprValue, 1.0, DELTA);
 
@@ -78,10 +106,19 @@ public class FactorExpresionTest {
     public final void testToText() {
         String str ;
         String exprToString ;
+        FactorExpresion e ;
+
+        str = null ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        e.print("testToText");
+        LOG.trace(str+" = "+exprToString);
+        assertTrue(str+" = "+exprToString, "(null)".equals(exprToString));
 
         str = "x+2/4" ;
-        FactorExpresion e1 = new FactorExpresion(str);
-        exprToString = e1.toText() ;
+        e = new FactorExpresion(str);
+        exprToString = e.toText() ;
+        e.print("testToText");
         LOG.trace(str+" = "+exprToString);
         assertTrue(str+" = "+exprToString, "(x+2.0/4.0)".equals(exprToString));
     }
