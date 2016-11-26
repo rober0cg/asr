@@ -16,156 +16,76 @@ public class FactorVariableTest {
 
     private static final double DELTA = 0.000001;
     
+    private static String[] inStr    = { null,   "",     ";v+2", "+v3",  "/v",   "x", "xx2+3", "x3,x2"  } ;
+    private static String[] toTextOK = { "null", "null", "null", "null", "null", "x", "xx2",   "x3"     } ;
+    private static int[]    comidoOK = {  0,     0,      1,      0,      0,      1,   3,       2        } ;
+    private static double[] inEvalua = {  3.0,   3.5,    9.9,    4.5,    6.7,    1.1, 2.2,    -1.2345   } ;
+    private static double[] evaluaOK = {  0.0,   0.0,    0.0,    0.0,    0.0,    1.1, 2.2,    -1.2345   } ;
+    
     @Test
     public final void testFactorVariable() {
-        String str;
-        String varToString;
-        FactorVariable v;
-
-        str=null;
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "null".equals(varToString));
-
-        str="";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "null".equals(varToString));
-
-        str= ";v";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "null".equals(varToString));
-
-        str="+v";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "null".equals(varToString));
-
-        str= "/v";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "null".equals(varToString));
-
-        str="x";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "x".equals(varToString));
-
-        str="xx2+3";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "xx2".equals(varToString));
-
-        str="xxx3,xx2";
-        v = new FactorVariable(str);
-        varToString = v.toText();
-        LOG.trace(varToString);
-        assertTrue(str+" = "+varToString, "xxx3".equals(varToString));
-
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorVariable v = new FactorVariable(str);
+            String objToText = v.toText();
+            LOG.trace("testFactorVariable "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
     }
 
     @Test
     public final void testComido() {
-        String str;
-        int varComido;
-        FactorVariable v;
-
-        str="x/5";
-        v = new FactorVariable(str);
-        varComido = v.comido();
-        LOG.trace("x.comido()=="+varComido);
-        assertTrue(str+" (comido1) = ", varComido==1);
-
-        str="xx2*23";
-        v = new FactorVariable(str);
-        varComido = v.comido();
-        LOG.trace("xx2.comido()=="+varComido);
-        assertTrue(str+" (comido2) = ", varComido==3);
-
-        str="xxx3*(xx2)";
-        v = new FactorVariable(str);
-        varComido = v.comido();
-        LOG.trace("xxx3.comido()=="+varComido);
-        assertTrue(str+" (comido3) = ", varComido==4);
-
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorVariable v = new FactorVariable(str);
+            int objComido = v.comido() ;
+            LOG.trace("testFactorVariable (comido) "+str+" = "+objComido);
+            assertTrue(str, comidoOK[i] == objComido );
+        }
     }
 
     @Test
     public final void testEvalua() {
-        String str;
-        double varEvalua;
-        FactorVariable v;
-
-        str=null;
-        v = new FactorVariable(str);
-        Variables.set("x", 123.0);
-        varEvalua = v.evalua();
-        LOG.trace("x.evalua()=="+varEvalua);
-        assertEquals(str+" (value1) = ", varEvalua, 0.0, DELTA);
-
-        str="x+13";
-        v = new FactorVariable(str);
-        Variables.set("x", 123.0);
-        varEvalua = v.evalua();
-        LOG.trace("x.evalua()=="+varEvalua);
-        assertEquals(str+" (value1) = ", varEvalua, 123.0, DELTA);
-
-        str="xx2+33";
-        v = new FactorVariable(str);
-        Variables.set("xx2", -0.00001);
-        varEvalua = v.evalua();
-        LOG.trace("xx2.evalua()=="+varEvalua);
-        assertEquals(str+" (value2) = ", varEvalua, -0.00001, DELTA);
-
-        str="xxx3,xx2";
-        v = new FactorVariable(str);
-        Variables.set("xxx3",-12345678.00001);
-        varEvalua = v.evalua();
-        LOG.trace("xxx3.evalua()=="+varEvalua);
-        assertEquals(str+" (value3) = ", varEvalua, -12345678.00001, DELTA);
-
-        v = new FactorVariable("a");
-        v = new FactorVariable("b");
-        v = new FactorVariable("c");
-        v = new FactorVariable("b");
-        v = new FactorVariable("c");
-
-        Iterator<Var> iv ;
-        iv = Variables.getVariables();
-        while ( iv.hasNext()) {
-            LOG.info( "getVariables = " + iv.next().getName() );
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorVariable v = new FactorVariable(str);
+            Variables.set(toTextOK[i], inEvalua[i]);
+            double objEvalua = v.evalua();
+            LOG.trace("testFactorVariable (evalua) "+str+" = "+objEvalua);
+            assertEquals(str, objEvalua, evaluaOK[i], DELTA);
         }
-        
     }
 
     @Test
     public final void testToText() {
-        String str ;
-        String varToString ;
-        FactorVariable v ;
-
-        str = null ;
-        v = new FactorVariable(str);
-        varToString = v.toText() ;
-        v.print("testToText");
-        LOG.trace(str+" = "+varToString);
-        assertTrue(str+" (text) = "+varToString, "null".equals(varToString));
-
-        str = "sin(4-4)" ;
-        v = new FactorVariable(str);
-        varToString = v.toText() ;
-        v.print("testToText");
-        LOG.trace(str+" = "+varToString);
-        assertTrue(str+" (text) = "+varToString, "sin".equals(varToString));
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorVariable v = new FactorVariable(str);
+            String objToText = v.toText();
+            LOG.trace("testFactorVariable (toText) "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
     }
 
+    @Test
+    public final void testVariables() {
+        String[] masVars = {"a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "a" } ;
+        for ( String str : masVars ) {
+            FactorVariable v;
+            v = new FactorVariable(str);
+            String objToText = v.toText();
+            LOG.trace("testVariables "+str+" = "+objToText);
+        }
+
+        Iterator<Var> iv ;
+        iv = Variables.getVariables();
+        int i = 0 ;
+        while ( iv.hasNext()) {
+            String str = iv.next().getName();
+            LOG.info( "getVariables = " + str );
+            i++;
+        }
+        assertTrue("testVariables", 4 == i );
+    }
     
 }

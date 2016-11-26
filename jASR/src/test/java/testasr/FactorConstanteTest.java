@@ -12,102 +12,54 @@ public class FactorConstanteTest {
 
     private static final double DELTA = 0.000001;
 
+    private static String[] inStr    = { "3,5/b", "3.5/b", null,  "",    "+2",  "*3"  } ;
+    private static String[] toTextOK = { "3.0",   "3.5",   "1.0", "1.0", "1.0", "1.0" } ;
+    private static int[]    comidoOK = {  1,       3,      0,     0,     0,     0     } ;
+    private static double[] evaluaOK = {  3.0,     3.5,    1.0,   1.0,   1.0,   1.0   } ;
+
+
     @Test
     public final void testFactorConstante() {
-        String str ;
-        String consToString ;
-        
-        str = "3,5/b" ;
-        FactorConstante c1 = new FactorConstante(str);
-        consToString = c1.toText();
-        LOG.trace(consToString);
-        assertTrue(consToString, "3.0".equals(consToString));
-
-        str = "3.5/b" ;
-        FactorConstante c2 = new FactorConstante(str);
-        consToString = c2.toText();
-        LOG.trace(consToString);
-        assertTrue(consToString, "3.5".equals(consToString));
-
-        str = null ;
-        FactorConstante c3 = new FactorConstante(str);
-        consToString = c3.toText();
-        LOG.trace(consToString);
-        assertTrue(consToString, "1.0".equals(consToString));
-
-        str = "" ;
-        FactorConstante c4 = new FactorConstante(str);
-        consToString = c4.toText();
-        LOG.trace(consToString);
-        assertTrue(consToString, "1.0".equals(consToString));
-
-        str = "+2" ;
-        FactorConstante c5 = new FactorConstante(str);
-        consToString = c5.toText();
-        LOG.trace(consToString);
-        assertTrue(consToString, "1.0".equals(consToString));
-
-        str = "*3" ;
-        FactorConstante c6 = new FactorConstante(str);
-        consToString = c6.toText();
-        LOG.trace(consToString);
-        assertTrue(consToString, "1.0".equals(consToString));
-    
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorConstante o = new FactorConstante(str);
+            String objToText = o.toText();
+            LOG.trace("testFactorConstante "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
     }
 
     @Test
     public final void testComido() {
-        String str ;
-        int consComido ;
-
-        str = "3,5/b";
-        FactorConstante c1 = new FactorConstante(str);
-        consComido = c1.comido() ;
-        assertTrue(str+" (comido) = "+consComido, 1 == consComido );
-
-        str = "3.5/b";
-        FactorConstante c2 = new FactorConstante(str);
-        consComido = c2.comido() ;
-        assertTrue(str+" (comido) = "+consComido, 3 == consComido );
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorConstante o = new FactorConstante(str);
+            int objComido = o.comido() ;
+            LOG.trace("testFactorConstante (comido) "+str+" = "+objComido);
+            assertTrue(str, comidoOK[i] == objComido );
+        }
     }
 
     @Test
     public final void testEvalua() {
-        String str ;
-        String consToString ;
-        double consEvalua ;
-
-        str = "3,5/b0";
-        FactorConstante c1 = new FactorConstante(str);
-        consEvalua = c1.evalua() ;
-        consToString = c1.toText();
-        assertEquals(str+" (value) = "+consToString, consEvalua, 3.0, DELTA);
-
-        str = "3.5/b1";
-        FactorConstante c2 = new FactorConstante(str);
-        consEvalua = c2.evalua() ;
-        consToString = c2.toText();
-        assertEquals(str+" (value) = "+consToString, consEvalua, 3.5, DELTA);
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorConstante o = new FactorConstante(str);
+            double objEvalua = o.evalua();
+            LOG.trace("testFactorConstante (evalua) "+str+" = "+objEvalua);
+            assertEquals(str, objEvalua, evaluaOK[i], DELTA);
+        }
     }
 
     @Test
     public final void testToText() {
-        String str ;
-        String consToString ;
-        
-        str = "3,5/cc" ;
-        FactorConstante c1 = new FactorConstante(str);
-        consToString = c1.toText();
-        c1.print("testToText");
-        LOG.trace(consToString);
-        assertTrue(consToString+" (text) ", "3.0".equals(consToString));
-
-        str = "3.5/cc" ;
-        FactorConstante c2 = new FactorConstante(str);
-        consToString = c2.toText();
-        c2.print("testToText");
-        LOG.trace(consToString);
-        assertTrue(consToString+" (text) ", "3.5".equals(consToString));
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorConstante o = new FactorConstante(str);
+            String objToText = o.toText();
+            LOG.trace("testFactorConstante (toText) "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
     }
 
 }

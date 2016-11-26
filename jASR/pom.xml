@@ -3,8 +3,8 @@
   <groupId>jASR</groupId>
   <artifactId>jASR</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>ASR</name>
-  <description>Analizador Sintáctico Recursivo</description>
+  <name>Analizador Sintáctico Recursivo (java)</name>
+  <description>Analizador Sintáctico Recursivo (java)</description>
 
   <properties>
 <!--    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
