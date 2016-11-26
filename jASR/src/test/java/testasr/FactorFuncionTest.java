@@ -12,10 +12,10 @@ public class FactorFuncionTest {
 
     private static final double DELTA = 0.000001;
     
-    private static String[] inStr    = { null,     "",       ";(2)",   "-(3)",   "/(4.5)", "random()", "sin(1-1)",     "hypot(3,4)"     } ;
-    private static String[] toTextOK = { "null()", "null()", "null()", "null()", "null()", "random()", "sin(1.0-1.0)", "hypot(3.0,4.0)" } ;
-    private static int[]    comidoOK = {  0,       0,        1,        0,        0,        8,          8,              10               } ;
-    private static double[] evaluaOK = {  0.0,     0.0,      0.0,      0.0,      0.0,      1.0,        0.0,            5.0              } ;
+    private static String[] inStr    = { null,     "",       ";(2)",   "-(3)",   "/(4.5)", "random()", "sin(1-1)",     "hypot(3,4)",     "multi(1,2,3)",   "raro(1;)"  };
+    private static String[] toTextOK = { "null()", "null()", "null()", "null()", "null()", "random()", "sin(1.0-1.0)", "hypot(3.0,4.0)", "multi(1.0,2.0)", "raro(1.0)" };
+    private static int[]    comidoOK = {  0,       0,        1,        0,        0,        8,          8,              10,               10,               8           };
+    private static double[] evaluaOK = {  0.0,     0.0,      0.0,      0.0,      0.0,      1.0,        0.0,            5.0,              0.0,              0.0         };
 
     
     @Test

@@ -15,15 +15,15 @@ public class FactorExpresionTest {
     private static String[] inStr    = { "8+2/4",         null,     "",       "+32",    "*32",    ",32"    } ;
     private static String[] toTextOK = { "(8.0+2.0/4.0)", "(null)", "(null)", "(null)", "(null)", "(null)" } ;
     private static int[]    comidoOK = {  5,              0,        0,        0,        0,        1        } ;
-    private static double[] evaluaOK = {  8.5,            1.0,      1.0,      1.0,      1.0,      1.0   } ;
+    private static double[] evaluaOK = {  8.5,            1.0,      1.0,      1.0,      1.0,      1.0      } ;
 
     
     @Test
     public final void testFactorExpresion() {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
-            FactorExpresion e = new FactorExpresion(str);
-            String objToText = e.toText() ;
+            FactorExpresion o = new FactorExpresion(str);
+            String objToText = o.toText() ;
             LOG.trace("testFactorExpresion "+str+" = "+objToText);
             assertTrue(str+" = "+objToText, toTextOK[i].equals(objToText));
         }
@@ -33,8 +33,8 @@ public class FactorExpresionTest {
     public final void testComido() {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
-            FactorExpresion e = new FactorExpresion(str);
-            int objComido = e.comido();
+            FactorExpresion o = new FactorExpresion(str);
+            int objComido = o.comido();
             LOG.trace("testFactorExpresion (comido) "+str+" = "+objComido);
             assertTrue(str, comidoOK[i] == objComido );
         }
@@ -44,8 +44,8 @@ public class FactorExpresionTest {
     public final void testEvalua() {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
-            FactorExpresion e = new FactorExpresion(str);
-            double objEvalua = e.evalua();
+            FactorExpresion o = new FactorExpresion(str);
+            double objEvalua = o.evalua();
             LOG.trace("testFactorExpresion (evalua) "+str+" = "+objEvalua);
             assertEquals(str, objEvalua, evaluaOK[i], DELTA);
         }
@@ -55,8 +55,8 @@ public class FactorExpresionTest {
     public final void testToText() {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
-            FactorExpresion e = new FactorExpresion(str);
-            String objToText = e.toText() ;
+            FactorExpresion o = new FactorExpresion(str);
+            String objToText = o.toText() ;
             LOG.trace("testFactorExpresion (toText) "+str+" = "+objToText);
             assertTrue(str, toTextOK[i].equals(objToText));
         }

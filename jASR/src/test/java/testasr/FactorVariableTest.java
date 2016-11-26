@@ -83,9 +83,9 @@ public class FactorVariableTest {
         while ( iv.hasNext()) {
             String str = iv.next().getName();
             LOG.info( "getVariables = " + str );
+            assertTrue("testGetVariables", str.equals(Variables.getName(i)));
             i++;
         }
-        assertTrue("testVariables", 4 == i );
     }
     
 }

@@ -64,7 +64,7 @@ public class Expresion {
         }
     }
     
-    int comido(){
+    public int comido(){
         return leidos;
     }
 
@@ -87,12 +87,17 @@ public class Expresion {
     }
     public String toText(boolean isFirst){
         String str= "";
-        if ( isFirst && term.oper=='-')
-            str += Character.toString(term.oper);
-        str += term.toText();
-        if ( next!=null) {
-            str += Character.toString(next.term.oper);
-            str += next.toText(false);
+        if ( term==null ) {
+            str = "null";
+        }
+        else {
+            if ( isFirst && term.oper=='-')
+                str += Character.toString(term.oper);
+            str += term.toText();
+            if ( next!=null) {
+                str += Character.toString(next.term.oper);
+                str += next.toText(false);
+            }
         }
         return str;
     }
@@ -106,12 +111,17 @@ public class Expresion {
         print(Util.SEP, true);
     }
     public void print(String pre, boolean isFirst){
-        if (isFirst && term.oper=='-')
-            LOG.trace(pre + term.oper);
-        term.print(pre + Util.SEP);
-        if ( next!=null) {
-            LOG.trace(pre + Util.SEP + next.term.oper);
-            next.print(pre, false);
+        if ( term==null ) {
+            LOG.trace(pre + "null");
+        }
+        else {
+            if (isFirst && term.oper=='-')
+                LOG.trace(pre + term.oper);
+            term.print(pre + Util.SEP);
+            if ( next!=null) {
+                LOG.trace(pre + Util.SEP + next.term.oper);
+                next.print(pre, false);
+            }
         }
     }
 

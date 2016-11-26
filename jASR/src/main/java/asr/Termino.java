@@ -69,7 +69,11 @@ public class Termino {
         }
     }
 
-    double evalua() {
+    public int comido(){
+        return leidos;
+    }
+
+    public double evalua() {
         double d ;
         if ( fact==null ) {
             LOG.error("Termino.evalua null ("+fact+")");
@@ -81,10 +85,6 @@ public class Termino {
         if ( next!=null)
             d *= next.evalua();
         return ( oper=='+' ) ?  d : -d;
-    }
-
-    int comido(){
-        return leidos;
     }
 
     public String toText(){
@@ -102,7 +102,7 @@ public class Termino {
         return str;
     }
 
-    void print(String pre){
+    public void print(String pre){
         if ( fact==null ) {
             LOG.trace(pre + "null");
         }

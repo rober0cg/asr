@@ -22,71 +22,120 @@ public class Variables {
     }
 
     public static int addVar (String text) {
-        Var v = new Var(text);
         int idx;
-        if ( listVars.contains(v) ) {
-            idx = listVars.indexOf(v);
+        if (text==null || text.isEmpty()) {
+            idx = -1 ;
         }
         else {
-            listVars.add(v);
-            idx = listVars.size()-1;
+            Var v = new Var(text);
+            if ( listVars.contains(v) ) {
+                idx = listVars.indexOf(v);
+            }
+            else {
+                listVars.add(v);
+                idx = listVars.size()-1;
+            }
         }
         return idx;
     }
 
     public static void set(String text, double d){
-        LOG.trace("Variable.set "+text);
-        Var v = new Var(text);
-        if ( listVars.contains(v) ) {
-            int idx = listVars.indexOf(v);
-            v.setVal(d);
-            listVars.set(idx,v);
+        if ( text==null || text.isEmpty() ) {
+            LOG.error("Variable.set null - ERROR");
+        }
+        else {
+            LOG.trace("Variable.set "+text);
+            Var v = new Var(text);
+            if ( listVars.contains(v) ) {
+                int idx = listVars.indexOf(v);
+                v.setVal(d);
+                listVars.set(idx,v);
+            }
         }
     }
     public static void set(int idx, double d){
-        LOG.trace("Variable.set "+idx);
-        listVars.get(idx).setVal(d);
+        if ( idx<0 ) {
+            LOG.error("Variable.set idx<0 - ERROR");
+        }
+        else {
+            LOG.trace("Variable.set "+idx);
+            listVars.get(idx).setVal(d);
+        }
     }
 
     public static double evalua(String text) {
-        LOG.trace("Variable.evalua "+text);
-        Var v = new Var(text);
         double d=0.0;
-        if ( listVars.contains(v) ) {
-            int idx = listVars.indexOf(v);
-            d = listVars.get(idx).getVal();
+        if ( text==null || text.isEmpty() ) {
+            LOG.error("Variable.evalua null - ERROR");
+        }
+        else {
+            LOG.trace("Variable.evalua "+text);
+            Var v = new Var(text);
+            if ( listVars.contains(v) ) {
+                int idx = listVars.indexOf(v);
+                d = listVars.get(idx).getVal();
+            }
         }
         return d;
     }
     public static double evalua(int idx) {
-        LOG.trace("Variable.evalua "+idx);
-        return listVars.get(idx).getVal();
+        double d=0.0;
+        if ( idx<0 ) {
+            LOG.error("Variable.evalua idx<0 - ERROR");
+        }
+        else {
+            LOG.trace("Variable.evalua "+idx);
+            d = listVars.get(idx).getVal();
+        }
+        return d;
     }
 
     public static String getName(int idx) {
-        return listVars.get(idx).getName() ;
+        String str;
+        if ( idx<0 ) {
+            LOG.error("Variable.getName idx<0 - ERROR");
+            str = "null";
+        }
+        else {
+            str = listVars.get(idx).getName() ;
+        }
+        return str;
     }
 
-
-    void print(String pre, int idx){
-        LOG.trace(pre + listVars.get(idx).getName());
+    public static void print(String pre, int idx){
+        if ( idx<0 ) {
+            LOG.error("Variable.print idx<0 - ERROR");
+        }
+        else {
+            LOG.trace(pre + listVars.get(idx).getName());
+        }
     }
 
-    public String toString(int idx) {
+    public static String toString(int idx) {
         return toText(idx);
     }
     public static String toText(int idx) {
-        return listVars.get(idx).getName() + "=" + listVars.get(idx).getVal() ;
-    }
-    public static String toText(String text) {
-        Var v = new Var(text);
-        int idx = listVars.indexOf(v);
-        if ( idx >= 0 ) {
-            return listVars.get(idx).getName() + "=" + listVars.get(idx).getVal() ;
+        String str;
+        if ( idx<0 ) {
+            LOG.error("Variable.toString idx<0 - ERROR");
+            str="null";
         }
         else {
-            return text + " --> IS NOT A VAR" ;
+            str = listVars.get(idx).getName() + "=" + listVars.get(idx).getVal();
         }
+        return str;
+    }
+    public static String toText(String text) {
+        String str;
+        if ( text==null || text.isEmpty() ) {
+            str = "null";
+        }
+        else {
+            Var v = new Var(text);
+            int idx = listVars.indexOf(v);
+            str = toText(idx);
+        }
+        return str;
     }
 
     public static Iterator<Var> getVariables() {

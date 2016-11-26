@@ -8,27 +8,31 @@ public class Util {
     // vacio por ser clase estatica de funciones
     }
     
-    static boolean isIniExpr ( char c ) {
+    public static boolean isIniExpr ( char c ) {
         return  c=='(' ;
     }
 
-    static boolean isFinExpr ( char c ) {
+    public static boolean isFinExpr ( char c ) {
         return c==')' || c==',' || c==';' ;
     }
 
-    static boolean isOpTerm ( char c ) {
+    public static boolean isOpTerm ( char c ) {
         return c=='+' || c=='-' ; 
     }
 
-    static boolean isOpFact ( char c ) {
+    public static boolean isOpFact ( char c ) {
         return c=='*' || c=='/' ; 
     }
 
-    static boolean isNumeric ( char c ) {
+    public static boolean isOperador ( char c ) {
+        return isOpTerm(c) || isOpFact(c) ;
+    }
+    
+    public static boolean isNumeric ( char c ) {
         return c=='.' || (c>='0' && c<='9') ; 
     }
 
-    static boolean isAlphaNum ( char c ) { 
+    public static boolean isAlphaNum ( char c ) { 
         if (c>='a' && c<='z')
             return true ;
         if (c>='A' && c<='Z')
@@ -38,7 +42,7 @@ public class Util {
         return false;
     }
 
-    static boolean isFinVar (char c ) {
+    public static boolean isFinVar (char c ) {
         return isFinExpr(c) || isOpTerm(c) || isOpFact(c); 
     }
 

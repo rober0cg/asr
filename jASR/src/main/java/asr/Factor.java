@@ -113,7 +113,7 @@ public class Factor {
         return str;
     }
 
-    void print(String pre){
+    public void print(String pre){
         if ( fact==null ) {
             LOG.trace(pre + "(null)");
         }

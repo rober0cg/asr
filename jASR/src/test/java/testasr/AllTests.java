@@ -6,11 +6,16 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-    FactorVariableTest.class,
+    UtilTest.class,
+    VariablesTest.class,
+    FuncionTest.class,
     FactorConstanteTest.class,
+    FactorVariableTest.class,
     FactorExpresionTest.class,
     FactorFuncionTest.class,
-    FactorTest.class
+    FactorTest.class,
+    TerminoTest.class,
+    ExpresionTest.class
 })
 public class AllTests {
 
