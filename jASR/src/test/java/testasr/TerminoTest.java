@@ -12,10 +12,10 @@ public class TerminoTest {
 
     private static final double DELTA = 0.000001;
 
-    private static String[] inStr    = { null,   "",     "+32+2",  "*32-3", ",32"   } ;
-    private static String[] toTextOK = { "null", "null", "32.0",   "32.0",  "null"  } ;
-    private static int[]    comidoOK = { 0,      0,      3,        3,       1        } ;
-    private static double[] evaluaOK = { 1.0,    1.0,    32.0,     32.0,    1.0      } ;
+    private static String[] inStr    = { null,   "",     "+32+2",  "-32+2",  "*32*3",     ",32"   } ;
+    private static String[] toTextOK = { "null", "null", "32.0",   "32.0",   "32.0*3.0",  "null"  } ;
+    private static int[]    comidoOK = { 0,      0,      3,        3,        5,           1       } ;
+    private static double[] evaluaOK = { 1.0,    1.0,    32.0,     -32.0,    96.0,        1.0     } ;
 
 
     @Test

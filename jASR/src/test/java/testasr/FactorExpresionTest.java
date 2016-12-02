@@ -62,4 +62,16 @@ public class FactorExpresionTest {
         }
     }
 
+    @Test
+    public final void testPrint() {
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorExpresion o = new FactorExpresion(str);
+            o.print("prefix");
+            String objToText = o.toText() ;
+            LOG.trace("testFactorExpresion (print) "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
+    }
+
 }

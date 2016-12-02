@@ -49,7 +49,8 @@ public class FactorVariableTest {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
             FactorVariable v = new FactorVariable(str);
-            Variables.set(toTextOK[i], inEvalua[i]);
+            Variables vs = new Variables();
+            vs.set(toTextOK[i], inEvalua[i]);
             double objEvalua = v.evalua();
             LOG.trace("testFactorVariable (evalua) "+str+" = "+objEvalua);
             assertEquals(str, objEvalua, evaluaOK[i], DELTA);
@@ -77,13 +78,14 @@ public class FactorVariableTest {
             LOG.trace("testVariables "+str+" = "+objToText);
         }
 
+        Variables vs = new Variables();
         Iterator<Var> iv ;
-        iv = Variables.getVariables();
+        iv = vs.getVariables();
         int i = 0 ;
         while ( iv.hasNext()) {
             String str = iv.next().getName();
             LOG.info( "getVariables = " + str );
-            assertTrue("testGetVariables", str.equals(Variables.getName(i)));
+            assertTrue("testGetVariables", str.equals(vs.getName(i)));
             i++;
         }
     }

@@ -36,34 +36,35 @@ public class ASR {
 
         expr.traza("expr e");
 
+        Variables vs = new Variables();
         Iterator<Var> iv ;
         
-        iv = Variables.getVariables();
+        iv = vs.getVariables();
         while ( iv.hasNext()) {
             LOG.info( "getVariables = " + iv.next().getName() );
         }
 
-        Variables.set(vx, 1.55);
-        LOG.info("Variable x creada: " + Variables.toText(vx) );
+        vs.set(vx, 1.55);
+        LOG.info("Variable x creada: " + vs.toText(vx) );
 
-        Variables.set(vy, 1.55);
-        LOG.info("Variable y creada: " + Variables.toText(vy) );
+        vs.set(vy, 1.55);
+        LOG.info("Variable y creada: " + vs.toText(vy) );
       
-        Variables.set(vy, -7.55);
-        LOG.info("Variable y creada: " + Variables.toText(vz) );
+        vs.set(vy, -7.55);
+        LOG.info("Variable y creada: " + vs.toText(vz) );
 
         d = expr.evalua();
         LOG.info("main 1: " + expr.toText() + " = " + d );
 
-        Variables.set(vx, 0.71);
+        vs.set(vx, 0.71);
         d = expr.evalua();
         LOG.info("main 2: " + text + " = " + d );
 
-        Variables.set(vx, 0);
+        vs.set(vx, 0);
         d = expr.evalua();
         LOG.info("main 3: " + text + " = " + d );
 
-        iv = Variables.getVariables();
+        iv = vs.getVariables();
         while ( iv.hasNext()) {
             LOG.info( "getVariables = " + iv.next().getName() );
         }

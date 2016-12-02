@@ -19,7 +19,7 @@ public class FactorVariable implements FactorBase {
 
     int leidos=0;  // longitud caracteres leídos
     int idx; // indice en la lista de Var's
-    static Variables vars ; // lista de variables
+    Variables vs = new Variables(); // lista de variables
 
     public FactorVariable(String text) {
         LOG.trace("FactorVariable= "+text);
@@ -48,7 +48,7 @@ public class FactorVariable implements FactorBase {
     }
     private int factVar (String text) {
         int n=Util.longNombreVarOrFunc(text);
-        idx = Variables.addVar(text.substring(0,n));
+        idx = vs.addVar(text.substring(0,n));
         return n;
     }
     
@@ -64,7 +64,7 @@ public class FactorVariable implements FactorBase {
             LOG.error("FactorVariable.evalua null ("+idx+")");
         }
         else {
-            d = Variables.evalua(idx);
+            d = vs.evalua(idx);
         }
         return d ;
     }
@@ -76,7 +76,7 @@ public class FactorVariable implements FactorBase {
             str = "null" ;
         }
         else {
-            str = Variables.getName(idx);
+            str = vs.getName(idx);
         }
         return str ;
     }
@@ -87,7 +87,7 @@ public class FactorVariable implements FactorBase {
             LOG.trace(pre + "null");
         }
         else {
-            LOG.trace(pre + Variables.getName(idx));
+            LOG.trace(pre + vs.getName(idx));
         }
     }
 }

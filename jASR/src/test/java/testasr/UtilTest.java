@@ -60,15 +60,24 @@ public class UtilTest {
     public final void testIsAlphaNum() {
         assertTrue("testIsIniExpr", Util.isAlphaNum('a'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('b'));
+        assertTrue("testIsIniExpr", Util.isAlphaNum('y'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('z'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('A'));
+        assertTrue("testIsIniExpr", Util.isAlphaNum('B'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('Y'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('Z'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('0'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('5'));
         assertTrue("testIsIniExpr", Util.isAlphaNum('9'));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('@'));
         assertFalse("testIsIniExpr", Util.isAlphaNum('('));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('['));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('{'));
         assertFalse("testIsIniExpr", Util.isAlphaNum('+'));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('-'));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('*'));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('/'));
+        assertFalse("testIsIniExpr", Util.isAlphaNum('%'));
         assertFalse("testIsIniExpr", Util.isAlphaNum(','));
         assertFalse("testIsIniExpr", Util.isAlphaNum('.'));
     }
@@ -78,6 +87,10 @@ public class UtilTest {
         assertTrue("testIsIniExpr", Util.isFinVar(')'));
         assertTrue("testIsIniExpr", Util.isFinVar(','));
         assertTrue("testIsIniExpr", Util.isFinVar(';'));
+        assertTrue("testIsIniExpr", Util.isFinVar('+'));
+        assertTrue("testIsIniExpr", Util.isFinVar('-'));
+        assertTrue("testIsIniExpr", Util.isFinVar('*'));
+        assertTrue("testIsIniExpr", Util.isFinVar('/'));
         assertFalse("testIsIniExpr", Util.isFinVar('a'));
         assertFalse("testIsIniExpr", Util.isFinVar('A'));
         assertFalse("testIsIniExpr", Util.isFinVar('0'));
@@ -95,6 +108,7 @@ public class UtilTest {
         assertTrue("testIsIniExpr", Util.trasNombreVarOrFunc("a+b")=='+');
         assertTrue("testIsIniExpr", Util.trasNombreVarOrFunc("sin(3.14)")=='(');
         assertTrue("testIsIniExpr", Util.trasNombreVarOrFunc("hypot(3,4)")=='(');
+        assertTrue("testIsIniExpr", Util.trasNombreVarOrFunc("func")==';');
     }
 
 }

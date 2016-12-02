@@ -18,10 +18,11 @@ public class Variables {
 //  ArrayList con las variables (subclase Var con nombre y valor)
     private static ArrayList<Var> listVars = new ArrayList<>();
     
-    private Variables() {
+    public Variables() {
+        // constructor... era privado, pero jacoco me decía que no estaba cubierto...
     }
 
-    public static int addVar (String text) {
+    public int addVar (String text) {
         int idx;
         if (text==null || text.isEmpty()) {
             idx = -1 ;
@@ -39,7 +40,7 @@ public class Variables {
         return idx;
     }
 
-    public static void set(String text, double d){
+    public void set(String text, double d){
         if ( text==null || text.isEmpty() ) {
             LOG.error("Variable.set null - ERROR");
         }
@@ -53,7 +54,7 @@ public class Variables {
             }
         }
     }
-    public static void set(int idx, double d){
+    public void set(int idx, double d){
         if ( idx<0 ) {
             LOG.error("Variable.set idx<0 - ERROR");
         }
@@ -63,7 +64,7 @@ public class Variables {
         }
     }
 
-    public static double evalua(String text) {
+    public double evalua(String text) {
         double d=0.0;
         if ( text==null || text.isEmpty() ) {
             LOG.error("Variable.evalua null - ERROR");
@@ -78,7 +79,7 @@ public class Variables {
         }
         return d;
     }
-    public static double evalua(int idx) {
+    public double evalua(int idx) {
         double d=0.0;
         if ( idx<0 ) {
             LOG.error("Variable.evalua idx<0 - ERROR");
@@ -90,7 +91,7 @@ public class Variables {
         return d;
     }
 
-    public static String getName(int idx) {
+    public String getName(int idx) {
         String str;
         if ( idx<0 ) {
             LOG.error("Variable.getName idx<0 - ERROR");
@@ -102,7 +103,7 @@ public class Variables {
         return str;
     }
 
-    public static void print(String pre, int idx){
+    public void print(String pre, int idx){
         if ( idx<0 ) {
             LOG.error("Variable.print idx<0 - ERROR");
         }
@@ -111,10 +112,10 @@ public class Variables {
         }
     }
 
-    public static String toString(int idx) {
+    public String toString(int idx) {
         return toText(idx);
     }
-    public static String toText(int idx) {
+    public String toText(int idx) {
         String str;
         if ( idx<0 ) {
             LOG.error("Variable.toString idx<0 - ERROR");
@@ -125,7 +126,7 @@ public class Variables {
         }
         return str;
     }
-    public static String toText(String text) {
+    public String toText(String text) {
         String str;
         if ( text==null || text.isEmpty() ) {
             str = "null";
@@ -138,7 +139,7 @@ public class Variables {
         return str;
     }
 
-    public static Iterator<Var> getVariables() {
+    public Iterator<Var> getVariables() {
         return listVars.iterator();
     }
     

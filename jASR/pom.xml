@@ -16,7 +16,8 @@
     <sonar.jacoco.reportPath>target/coverage-reports/jacoco-unit.exec</sonar.jacoco.reportPath>
     <sonar.java.binaries>target/classes</sonar.java.binaries>
     <sonar.java.test.binaries>target/test-classes</sonar.java.test.binaries>
-
+    <sonar.coverage.exclusions>pom.xml</sonar.coverage.exclusions>
+    <sonar.exclusions>pom.xml</sonar.exclusions>
   </properties>
 
   <build>
@@ -38,6 +39,9 @@
         <configuration>
           <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
           <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+          <excludes>
+            <exclude>pom.xml</exclude>
+          </excludes>
         </configuration>
 
         <executions>
@@ -69,7 +73,7 @@
                     <limit implementation="org.jacoco.report.check.Limit">
                       <counter>COMPLEXITY</counter>
                       <value>COVEREDRATIO</value>
-                      <minimum>0.50</minimum>
+                      <minimum>0.65</minimum>
                     </limit>
                   </limits>
                 </rule>

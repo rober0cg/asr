@@ -60,9 +60,21 @@ public class FactorFuncionTest {
     public final void testToText() {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
-            FactorFuncion f = new FactorFuncion(str);
-            String objToText = f.toText();
+            FactorFuncion o = new FactorFuncion(str);
+            String objToText = o.toText();
             LOG.trace("testFactorFuncion (toText) "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
+    }
+
+    @Test
+    public final void testPrint() {
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorFuncion o = new FactorFuncion(str);
+            o.print("prefix");
+            String objToText = o.toText();
+            LOG.trace("testFactorFuncion (print) "+str+" = "+objToText);
             assertTrue(str, toTextOK[i].equals(objToText));
         }
     }

@@ -12,10 +12,10 @@ public class ExpresionTest {
 
     private static final double DELTA = 0.000001;
 
-    private static String[] inStr    = { null,   "",    "+32-3",     "*32+2",    ",32"  } ;
-    private static String[] toTextOK = { "null", "null", "32.0-3.0", "32.0+2.0", "null" } ;
-    private static int[]    comidoOK = { 0,      0,      5,          5,          1      } ;
-    private static double[] evaluaOK = { 0.0,    0.0,    29.0,       34.0,       0.0    } ;
+    private static String[] inStr    = { null,   "",     "+32-3",    "-32-3",     "*32+2",    ",32"  } ;
+    private static String[] toTextOK = { "null", "null", "32.0-3.0", "-32.0-3.0", "32.0+2.0", "null" } ;
+    private static int[]    comidoOK = { 0,      0,      5,          5,           5,          1      } ;
+    private static double[] evaluaOK = { 0.0,    0.0,    29.0,       -35.0,       34.0,       0.0    } ;
 
 
     @Test
@@ -67,8 +67,8 @@ public class ExpresionTest {
         for ( int i=0 ; i< inStr.length ; i++ ) {
             String str = inStr[i] ;
             Expresion o = new Expresion(str);
-            String objToText = o.toText(false) ;
-            LOG.trace("testExpresion (toText) "+str+" = "+objToText);
+            String objToText = o.toText(true) ;
+            LOG.trace("testExpresion (toTextBoolean(true)) "+str+" = "+objToText);
             assertTrue(str+" = "+objToText, toTextOK[i].equals(objToText));
         }
     }
@@ -79,7 +79,7 @@ public class ExpresionTest {
             String str = inStr[i] ;
             Expresion o = new Expresion(str);
             o.traza("testExpresion - testTraza");
-            String objToText = o.toText(false) ;
+            String objToText = o.toText(true) ;
             LOG.trace("testExpresion (toText) "+str+" = "+objToText);
             assertTrue(str+" = "+objToText, toTextOK[i].equals(objToText));
         }
@@ -91,7 +91,7 @@ public class ExpresionTest {
             String str = inStr[i] ;
             Expresion o = new Expresion(str);
             o.print();
-            String objToText = o.toText(false) ;
+            String objToText = o.toText(true) ;
             LOG.trace("testExpresion (toText) "+str+" = "+objToText);
             assertTrue(str+" = "+objToText, toTextOK[i].equals(objToText));
         }
@@ -103,7 +103,7 @@ public class ExpresionTest {
             String str = inStr[i] ;
             Expresion o = new Expresion(str);
             o.print("prefix",false);
-            String objToText = o.toText(false) ;
+            String objToText = o.toText(true) ;
             LOG.trace("testExpresion (toText) "+str+" = "+objToText);
             assertTrue(str+" = "+objToText, toTextOK[i].equals(objToText));
         }
