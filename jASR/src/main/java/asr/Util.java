@@ -1,6 +1,6 @@
 package asr;
 
-public class Util {
+public final class Util {
 
     public static final String SEP = "  ";
     

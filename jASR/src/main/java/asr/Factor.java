@@ -63,7 +63,9 @@ public class Factor {
         int n=1;
         fact = new FactorExpresion(text.substring(1));
         n += fact.comido();
-        return Util.isFinExpr(text.charAt(n)) ? n+1 : n ;
+        if ( n<text.length() && Util.isFinExpr(text.charAt(n)) )
+            n += 1;
+        return n ;
     }
     private int nextFactorConst (String text){
         fact = new FactorConstante(text);

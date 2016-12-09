@@ -12,10 +12,10 @@ public class FactorConstanteTest {
 
     private static final double DELTA = 0.000001;
 
-    private static String[] inStr    = { "3,5/b", "3.5/b", null,  "",    "+2",  "*3"  } ;
-    private static String[] toTextOK = { "3.0",   "3.5",   "1.0", "1.0", "1.0", "1.0" } ;
-    private static int[]    comidoOK = {  1,       3,      0,     0,     0,     0     } ;
-    private static double[] evaluaOK = {  3.0,     3.5,    1.0,   1.0,   1.0,   1.0   } ;
+    private static String[] inStr    = { "3,5/b", "3.5/b", null,  "",    "+2",  "*3",  ")+3" } ;
+    private static String[] toTextOK = { "3.0",   "3.5",   "1.0", "1.0", "1.0", "1.0", "1.0" } ;
+    private static int[]    comidoOK = {  1,       3,      0,     0,     0,     0,     1     } ;
+    private static double[] evaluaOK = {  3.0,     3.5,    1.0,   1.0,   1.0,   1.0,   1.0   } ;
 
 
     @Test

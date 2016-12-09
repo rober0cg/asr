@@ -69,6 +69,18 @@ public class FactorVariableTest {
     }
 
     @Test
+    public final void testToPrint() {
+        for ( int i=0 ; i< inStr.length ; i++ ) {
+            String str = inStr[i] ;
+            FactorVariable v = new FactorVariable(str);
+            v.print("prefix");
+            String objToText = v.toText();
+            LOG.trace("testFactorVariable (toText) "+str+" = "+objToText);
+            assertTrue(str, toTextOK[i].equals(objToText));
+        }
+    }
+
+    @Test
     public final void testVariables() {
         String[] masVars = {"a", "b", "c", "d", "b", "c", "d", "b", "c", "d", "a" } ;
         for ( String str : masVars ) {

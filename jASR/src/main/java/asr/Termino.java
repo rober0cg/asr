@@ -52,7 +52,7 @@ public class Termino {
         }
     }
     private int nextTermino (String text) {
-        if ( text==null || text.length()==0 ){
+        if ( text.length()==0 ){
             next=null;
             return 0;
         }

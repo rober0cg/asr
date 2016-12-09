@@ -2,11 +2,24 @@ package testasr;
 
 import static org.junit.Assert.*;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Modifier;
+
 import org.junit.Test;
 
 import asr.Util;
 
 public class UtilTest {
+
+    @Test
+    public final void testUtil()
+            throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Constructor<Util> constructor = Util.class.getDeclaredConstructor();
+        constructor.setAccessible(true);
+        constructor.newInstance();
+        assertTrue("testUtil",Modifier.isPrivate(constructor.getModifiers()));
+    }
 
     @Test
     public final void testIsIniExpr() {

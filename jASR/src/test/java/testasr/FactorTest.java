@@ -12,10 +12,10 @@ public class FactorTest {
 
     private static final double DELTA = 0.000001;
 
-    private static String[] inStr    = { "8+2/4",  "",       null,     "+32",    "*32",  ",32",    "6.666+2/4", "(2)-2", "sin(0)+2", "v+2", "y[]"    } ;
-    private static String[] toTextOK = { "8.0",    "(null)", "(null)", "(null)", "32.0", "(null)", "6.666",     "(2.0)", "sin(0.0)", "v",   "(null)" } ;
-    private static int[]    comidoOK = {  1,       0,        0,        0,        3,      1,        5,           3,       6,          1,     1        } ;
-    private static double[] evaluaOK = {  8.0,     1.0,      1.0,      1.0,      32.0,   1.0,      6.666,       2.0,     0.0,        0.0,   1.0      } ;
+    private static String[] inStr    = { "8+2/4",  "",       null,     "+32",    "*32",  ",32",    "6.666+2/4", "(2)-2", "(4",    "(6]",      "sin(0)+2", "v+2", "y[]"    } ;
+    private static String[] toTextOK = { "8.0",    "(null)", "(null)", "(null)", "32.0", "(null)", "6.666",     "(2.0)", "(4.0)", "(6.0)",    "sin(0.0)", "v",   "(null)" } ;
+    private static int[]    comidoOK = {  1,       0,        0,        0,        3,      1,        5,           3,       2,       2,          6,          1,     1        } ;
+    private static double[] evaluaOK = {  8.0,     1.0,      1.0,      1.0,      32.0,   1.0,      6.666,       2.0,     4.0,     6.0,        0.0,        0.0,   1.0      } ;
 
 
     @Test

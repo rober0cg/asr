@@ -47,7 +47,7 @@ public class Expresion {
         }
     }
     private int nextExpresion(String text) {
-        if ( text==null || text.length()==0 ){
+        if ( text.length()==0 ){
             next = null;
             return 0;
         }
