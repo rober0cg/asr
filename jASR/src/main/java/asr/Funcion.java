@@ -3,8 +3,6 @@ package asr;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Objects;
-
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -19,6 +17,8 @@ import java.lang.reflect.Method;
  * TERM = FACT [ * TERM ]
  *
  * FACT = CONST | VAR | FUNC() | (EXPR)
+ * 
+ * Implementa la lista de funciones y el índice de la lista de la propia funcion
  * 
  */
 public class Funcion {
@@ -121,14 +121,16 @@ public class Funcion {
                         method = Math.class.getMethod(name,double.class);
                     if ( i==2 )
                         method = Math.class.getMethod(name,double.class,double.class);
-                    break;
                 } catch (NoSuchMethodException | SecurityException e) {
                     LOG.debug("Fun " + name + " (with " + i + " args)"+ " NoSuchMethod -> " + e);
                     method = null;
                 }
             }
-            if ( i<3 ) {
-                LOG.info("Fun " + name + " (with " + i + " args)"+ " Found OK");
+            if ( i>=3 ) {
+                LOG.error("Fun " + name + " NOT FOUND in Math");
+            }
+            else {
+                LOG.info("Fun " + name + " (with " + i + " args)"+ " FOUND OK in Math");
             }
         }
         public String getName(){
@@ -147,11 +149,9 @@ public class Funcion {
             Fun f = (Fun)o;
             return name.equals(f.name);
         }
-        
         @Override
         public int hashCode ( ) {
-            return Objects.hash(name); // antes Objects.hash(listFuncs.get(idx))
+            return name.hashCode();
         }
     }
-    
 }

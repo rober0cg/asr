@@ -4,7 +4,6 @@ import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Objects;
 
 /*
  * ASR
@@ -178,13 +177,9 @@ public class Variables {
             Var v = (Var)o;
             return name.equals(v.name);
         }
-
         @Override
         public int hashCode ( ) {
-            return Objects.hash(name);
+            return name.hashCode();
         }
-
     }
-
-    
 }
